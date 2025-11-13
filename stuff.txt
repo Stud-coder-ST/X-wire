@@ -1,0 +1,26 @@
+Student Input:
+- Name
+- Level
+
+Judge:
+- Name
+
+Rooms:
+- name
+
+------------------------------------
+
+Default Lists:
+Students: Name, Level
+Judge: Name
+
+Competition Organization:
+Judge: Name, Room, Student list
+
+
+
+Student:
+Name | Judge | Room | Speaking Number 
+
+Judge:
+Judge | Room | Student List
