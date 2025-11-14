@@ -1,0 +1,75 @@
+{
+    "competitors": [
+        {
+            "name": "saanvi"
+        },
+        {
+            "name": "rishik"
+        },
+        {
+            "name": "sonali"
+        },
+        {
+            "name": "prathamesh"
+        },
+        {
+            "name": "aditi"
+        },
+        {
+            "name": "hari"
+        },
+        {
+            "name": "pari"
+        },
+        {
+            "name": "kavya"
+        },
+        {
+            "name": "tanish"
+        }
+    ],
+    "judges": [
+        {
+            "name": "kishore",
+            "room": "Cafe"
+        },
+        {
+            "name": "armuta",
+            "room": "B309"
+        },
+        {
+            "name": "ayush",
+            "room": "Office"
+        }
+    ],
+    "rounds": [
+        {
+            "id": 1,
+            "name": "Round 1",
+            "date": "2025-11-14T11:03:49.808484",
+            "schematics": [
+                {
+                    "judge": "Kishore",
+                    "room": "Cafe",
+                    "competitors": [
+                        "Tanish",
+                        "Saanvi",
+                        "Sonali",
+                        "Kavya",
+                        "Hari"
+                    ]
+                },
+                {
+                    "judge": "Armuta",
+                    "room": "B309",
+                    "competitors": [
+                        "Rishik",
+                        "Prathamesh",
+                        "Pari",
+                        "Aditi"
+                    ]
+                }
+            ]
+        }
+    ]
+}

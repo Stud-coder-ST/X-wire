@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .section { margin-bottom: 30px; }
+        .form-group { margin-bottom: 10px; }
+        label { display: block; margin-bottom: 5px; }
+        input, button { padding: 8px; margin-bottom: 10px; }
+        .list { border: 1px solid #ccc; padding: 10px; }
+        .item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .delete-btn { background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .flash { color: red; margin-bottom: 10px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; }
+        .checkbox-item { margin-right: 20px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Competition Manager</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="section">
+            <h2>Add Competitor</h2>
+            <form action="{{ url_for('add_competitor') }}" method="post">
+                <div class="form-group">
+                    <label for="comp_name">Name:</label>
+                    <input type="text" id="comp_name" name="name" required>
+                </div>
+                <button type="submit">Add Competitor</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Add Judge</h2>
+            <form action="{{ url_for('add_judge') }}" method="post">
+                <div class="form-group">
+                    <label for="judge_name">Name:</label>
+                    <input type="text" id="judge_name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="room">Room:</label>
+                    <input type="text" id="room" name="room" required>
+                </div>
+                <button type="submit">Add Judge</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Competitors</h2>
+            <div class="list">
+                {% for comp in competitors %}
+                    <div class="item">
+                        <span>{{ comp.name.title() }}</span>
+                        <a href="{{ url_for('delete_competitor', name=comp.name) }}" class="delete-btn">Delete</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Judges</h2>
+            <div class="list">
+                {% for judge in judges %}
+                    <div class="item">
+                        <span>{{ judge.name.title() }} (Room: {{ judge.room }})</span>
+                        <a href="{{ url_for('delete_judge', name=judge.name) }}" class="delete-btn">Delete</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Start Competition</h2>
+            <form action="{{ url_for('start_competition') }}" method="post">
+                <div class="form-group">
+                    <label>Select Competitors:</label>
+                    <div class="checkbox-group">
+                        {% for idx, comp in enumerate(competitors) %}
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="comp_{{ idx }}" name="competitors" value="{{ idx }}">
+                                <label for="comp_{{ idx }}">{{ comp.name.title() }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select Judges:</label>
+                    <div class="checkbox-group">
+                        {% for idx, judge in enumerate(judges) %}
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="judge_{{ idx }}" name="judges" value="{{ idx }}">
+                                <label for="judge_{{ idx }}">{{ judge.name.title() }} (Room: {{ judge.room }})</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="submit">Start Competition</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

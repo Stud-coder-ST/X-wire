@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Assignments</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .assignment { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .back-btn { background: blue; color: white; border: none; padding: 10px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Competition Schematics</h1>
+        {% for assignment in assignments %}
+            <div class="assignment">
+                <h3>Judge: {{ assignment.judge }} (Room: {{ assignment.room }})</h3>
+                <p>Competitors: {{ assignment.competitors | join(', ') }}</p>
+            </div>
+        {% endfor %}
+        <a href="{{ url_for('dashboard') }}" class="back-btn">Back to Dashboard</a>
+    </div>
+</body>
+</html>
